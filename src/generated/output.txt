@@ -1,0 +1,9 @@
+
+Meta	Scalars['Int']
+Mutation	Tweet Tweet Scalars['Boolean']
+Notification	Scalars['Date'] Scalars['ID'] Scalars['String']
+Query	Array<Notification> Meta Tweet Array<Tweet> Meta User
+Stat	Scalars['Int'] Scalars['Int'] Scalars['Int'] Scalars['Int']
+Tweet	User Stat Scalars['String'] Scalars['Date'] Scalars['ID']
+
+User	Scalars['Url'] Scalars['String'] Scalars['String'] Scalars['ID'] Scalars['String'] Scalars['String'] Scalars['String']

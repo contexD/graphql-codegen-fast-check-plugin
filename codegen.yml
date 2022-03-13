@@ -1,0 +1,15 @@
+overwrite: true
+schema: "/Users/max/Code/personal/tutorials/graphql-codegen-plugin/src/my-schema.graphql"
+documents: null
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
+  src/generated/output.txt:
+    plugins:
+      - "/Users/max/Code/personal/tutorials/graphql-codegen-plugin/src/plugin/my-plugin.js":
+        myConfig: "some-value"
