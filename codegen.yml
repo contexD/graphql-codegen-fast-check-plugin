@@ -1,5 +1,5 @@
 overwrite: true
-schema: "/Users/max/Code/personal/tutorials/graphql-codegen-plugin/src/my-schema.graphql"
+schema: "/Users/max/Code/personal/tutorials/graphql-codegen-plugin/src/basic-schema.graphql"
 documents: null
 generates:
   src/generated/graphql.ts:

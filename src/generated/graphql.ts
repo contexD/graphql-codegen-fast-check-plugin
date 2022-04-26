@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -12,104 +12,37 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Date: any;
-  Url: any;
 };
 
-export type Meta = {
-  __typename?: 'Meta';
-  count?: Maybe<Scalars['Int']>;
+export type Customer = {
+  __typename?: 'Customer';
+  age?: Maybe<Scalars['Int']>;
+  first_name?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  last_name?: Maybe<Scalars['String']>;
+  orders?: Maybe<Array<Maybe<Order>>>;
+  phone_number?: Maybe<Scalars['String']>;
 };
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  createTweet?: Maybe<Tweet>;
-  deleteTweet?: Maybe<Tweet>;
-  markTweetRead?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationCreateTweetArgs = {
-  body?: InputMaybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteTweetArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationMarkTweetReadArgs = {
-  id: Scalars['ID'];
-};
-
-export type Notification = {
-  __typename?: 'Notification';
-  date?: Maybe<Scalars['Date']>;
-  id?: Maybe<Scalars['ID']>;
-  type?: Maybe<Scalars['String']>;
+export type Order = {
+  __typename?: 'Order';
+  id?: Maybe<Scalars['Int']>;
 };
 
 export type Query = {
   __typename?: 'Query';
-  Notifications: Array<Maybe<Notification>>;
-  NotificationsMeta?: Maybe<Meta>;
-  Tweet?: Maybe<Tweet>;
-  Tweets?: Maybe<Array<Maybe<Tweet>>>;
-  TweetsMeta?: Maybe<Meta>;
-  User?: Maybe<User>;
+  Customer?: Maybe<Customer>;
+  Order?: Maybe<Order>;
 };
 
 
-export type QueryNotificationsArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-};
-
-
-export type QueryTweetArgs = {
+export type QueryCustomerArgs = {
   id: Scalars['ID'];
 };
 
 
-export type QueryTweetsArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  sort_field?: InputMaybe<Scalars['String']>;
-  sort_order?: InputMaybe<Scalars['String']>;
-};
-
-
-export type QueryUserArgs = {
+export type QueryOrderArgs = {
   id: Scalars['ID'];
-};
-
-export type Stat = {
-  __typename?: 'Stat';
-  likes?: Maybe<Scalars['Int']>;
-  responses?: Maybe<Scalars['Int']>;
-  retweets?: Maybe<Scalars['Int']>;
-  views?: Maybe<Scalars['Int']>;
-};
-
-export type Tweet = {
-  __typename?: 'Tweet';
-  Author?: Maybe<User>;
-  Stats?: Maybe<Stat>;
-  body?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['Date']>;
-  id: Scalars['ID'];
-};
-
-export type User = {
-  __typename?: 'User';
-  avatar_url?: Maybe<Scalars['Url']>;
-  first_name?: Maybe<Scalars['String']>;
-  full_name?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  last_name?: Maybe<Scalars['String']>;
-  /** @deprecated Field no longer supported */
-  name?: Maybe<Scalars['String']>;
-  username?: Maybe<Scalars['String']>;
 };
 
 
@@ -182,109 +115,48 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  Date: ResolverTypeWrapper<Scalars['Date']>;
+  Customer: ResolverTypeWrapper<Customer>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
-  Meta: ResolverTypeWrapper<Meta>;
-  Mutation: ResolverTypeWrapper<{}>;
-  Notification: ResolverTypeWrapper<Notification>;
+  Order: ResolverTypeWrapper<Order>;
   Query: ResolverTypeWrapper<{}>;
-  Stat: ResolverTypeWrapper<Stat>;
   String: ResolverTypeWrapper<Scalars['String']>;
-  Tweet: ResolverTypeWrapper<Tweet>;
-  Url: ResolverTypeWrapper<Scalars['Url']>;
-  User: ResolverTypeWrapper<User>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
-  Date: Scalars['Date'];
+  Customer: Customer;
   ID: Scalars['ID'];
   Int: Scalars['Int'];
-  Meta: Meta;
-  Mutation: {};
-  Notification: Notification;
+  Order: Order;
   Query: {};
-  Stat: Stat;
   String: Scalars['String'];
-  Tweet: Tweet;
-  Url: Scalars['Url'];
-  User: User;
 };
 
-export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
-  name: 'Date';
-}
-
-export type MetaResolvers<ContextType = any, ParentType extends ResolversParentTypes['Meta'] = ResolversParentTypes['Meta']> = {
-  count?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+export type CustomerResolvers<ContextType = any, ParentType extends ResolversParentTypes['Customer'] = ResolversParentTypes['Customer']> = {
+  age?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  first_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  last_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  orders?: Resolver<Maybe<Array<Maybe<ResolversTypes['Order']>>>, ParentType, ContextType>;
+  phone_number?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createTweet?: Resolver<Maybe<ResolversTypes['Tweet']>, ParentType, ContextType, Partial<MutationCreateTweetArgs>>;
-  deleteTweet?: Resolver<Maybe<ResolversTypes['Tweet']>, ParentType, ContextType, RequireFields<MutationDeleteTweetArgs, 'id'>>;
-  markTweetRead?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationMarkTweetReadArgs, 'id'>>;
-};
-
-export type NotificationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Notification'] = ResolversParentTypes['Notification']> = {
-  date?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+export type OrderResolvers<ContextType = any, ParentType extends ResolversParentTypes['Order'] = ResolversParentTypes['Order']> = {
+  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  Notifications?: Resolver<Array<Maybe<ResolversTypes['Notification']>>, ParentType, ContextType, Partial<QueryNotificationsArgs>>;
-  NotificationsMeta?: Resolver<Maybe<ResolversTypes['Meta']>, ParentType, ContextType>;
-  Tweet?: Resolver<Maybe<ResolversTypes['Tweet']>, ParentType, ContextType, RequireFields<QueryTweetArgs, 'id'>>;
-  Tweets?: Resolver<Maybe<Array<Maybe<ResolversTypes['Tweet']>>>, ParentType, ContextType, Partial<QueryTweetsArgs>>;
-  TweetsMeta?: Resolver<Maybe<ResolversTypes['Meta']>, ParentType, ContextType>;
-  User?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
-};
-
-export type StatResolvers<ContextType = any, ParentType extends ResolversParentTypes['Stat'] = ResolversParentTypes['Stat']> = {
-  likes?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  responses?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  retweets?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  views?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TweetResolvers<ContextType = any, ParentType extends ResolversParentTypes['Tweet'] = ResolversParentTypes['Tweet']> = {
-  Author?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
-  Stats?: Resolver<Maybe<ResolversTypes['Stat']>, ParentType, ContextType>;
-  body?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  date?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export interface UrlScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Url'], any> {
-  name: 'Url';
-}
-
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  avatar_url?: Resolver<Maybe<ResolversTypes['Url']>, ParentType, ContextType>;
-  first_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  full_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  last_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  username?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+  Customer?: Resolver<Maybe<ResolversTypes['Customer']>, ParentType, ContextType, RequireFields<QueryCustomerArgs, 'id'>>;
+  Order?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<QueryOrderArgs, 'id'>>;
 };
 
 export type Resolvers<ContextType = any> = {
-  Date?: GraphQLScalarType;
-  Meta?: MetaResolvers<ContextType>;
-  Mutation?: MutationResolvers<ContextType>;
-  Notification?: NotificationResolvers<ContextType>;
+  Customer?: CustomerResolvers<ContextType>;
+  Order?: OrderResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
-  Stat?: StatResolvers<ContextType>;
-  Tweet?: TweetResolvers<ContextType>;
-  Url?: GraphQLScalarType;
-  User?: UserResolvers<ContextType>;
 };
 
