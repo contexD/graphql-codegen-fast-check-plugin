@@ -1,15 +1,18 @@
-const customerArbitrary = fc.record { 
+const getCustomerArbitrary = fc.record { 
           age: fc.integer(), 
            first_name: fc.string(), 
-           id: fc.integer(), 
+           has_membership: fc.boolean(), 
+           id: fc.uuid(), 
            last_name: fc.string(), 
-           orders: fc.set(orderArbitrary()), 
+           orders: fc.set(getOrderArbitrary()), 
            phone_number: fc.string(), 
+           reviewsratings: fc.set(fc.integer()), 
           }
-const orderArbitrary = fc.record { 
+const getOrderArbitrary = fc.record { 
           id: fc.integer(), 
+           price: fc.float(), 
           }
-const queryArbitrary = fc.record { 
-          customer: Customer, 
-           order: Order, 
+const getQueryArbitrary = fc.record { 
+          customer: getCustomerArbitrary, 
+           order: getOrderArbitrary, 
           }

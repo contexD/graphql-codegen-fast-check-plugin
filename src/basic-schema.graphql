@@ -1,16 +1,19 @@
 type Customer {
-  id: Int
+  id: ID
   first_name: String
   last_name: String
   phone_number: String
   age: Int
   orders: [Order]
+  has_membership: Boolean
+  reviewsRatings: [Int]
 }
 
 type Order {
   id: Int
+  price: Float
 }
-
+#test
 type Query {
   Customer(id: ID!): Customer
   Order(id: ID!): Order

@@ -18,15 +18,18 @@ export type Customer = {
   __typename?: 'Customer';
   age?: Maybe<Scalars['Int']>;
   first_name?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
+  has_membership?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['ID']>;
   last_name?: Maybe<Scalars['String']>;
   orders?: Maybe<Array<Maybe<Order>>>;
   phone_number?: Maybe<Scalars['String']>;
+  reviewsRatings?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
 
 export type Order = {
   __typename?: 'Order';
   id?: Maybe<Scalars['Int']>;
+  price?: Maybe<Scalars['Float']>;
 };
 
 export type Query = {
@@ -116,6 +119,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Customer: ResolverTypeWrapper<Customer>;
+  Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Order: ResolverTypeWrapper<Order>;
@@ -127,6 +131,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Customer: Customer;
+  Float: Scalars['Float'];
   ID: Scalars['ID'];
   Int: Scalars['Int'];
   Order: Order;
@@ -137,15 +142,18 @@ export type ResolversParentTypes = {
 export type CustomerResolvers<ContextType = any, ParentType extends ResolversParentTypes['Customer'] = ResolversParentTypes['Customer']> = {
   age?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   first_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  has_membership?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   last_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   orders?: Resolver<Maybe<Array<Maybe<ResolversTypes['Order']>>>, ParentType, ContextType>;
   phone_number?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  reviewsRatings?: Resolver<Maybe<Array<Maybe<ResolversTypes['Int']>>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type OrderResolvers<ContextType = any, ParentType extends ResolversParentTypes['Order'] = ResolversParentTypes['Order']> = {
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  price?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
